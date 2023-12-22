@@ -1,0 +1,195 @@
+{% include "base.html" %}
+{% load static %}
+
+            <div class="tm-welcome-container text-center text-white">
+                <div class="tm-welcome-container-inner">
+                    <p class="tm-welcome-text mb-1 text-white">Video Catalog is brought to you by TemplateMo.</p>
+                    <p class="tm-welcome-text mb-5 text-white">This is a full-width video banner.</p>
+                    <a href="#content" class="btn tm-btn-animate tm-btn-cta tm-icon-down">
+                        <span>Discover</span>
+                    </a>
+                </div>
+            </div>
+
+            <div id="tm-video-container">
+                <video autoplay muted loop id="tm-video">
+                        <source src="{% static 'video/wheat-field.mp4' %}" type="video/mp4">
+                </video>    
+            </div>
+            
+            <i id="tm-video-control-button" class="fas fa-pause"></i>
+        </div>
+
+        <div class="container-fluid">
+            <div id="content" class="mx-auto tm-content-container">
+                <main>
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="tm-page-title mb-4">Our Video Catalog</h2>     
+                        </div>
+                    </div>
+                    
+                    <form method='get' action='/search'>
+                        <div class="input-group rounded" style="position: relative;
+                            text-align-last: center;">
+                            <input name = 'search' type="search" id='search' class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                            <span class="input-group-text border-0" id="search-addon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                    </form>
+
+                    <br>
+                    
+                    <div class="row tm-catalog-item-list">
+                        {% for n in blogsdata %}
+
+                            <div class="col-lg-4 col-md-6 col-sm-12 tm-catalog-item">
+                                <div class="position-relative tm-thumbnail-container">
+                                    <img src="/media/{{n.img}}" alt="Image" class="img-fluid tm-catalog-item-img">    
+                                    <a href="/blogdeatails/{{n.slug}}" class="position-absolute tm-img-overlay">
+                                    </a>
+                                </div>    
+                                <div class="p-4 tm-bg-gray tm-catalog-item-description">
+                                    <h3 class="tm-text-primary mb-3 tm-catalog-item-title">{{n.tittle}}</h3>
+                                    <p class="tm-catalog-item-text">{{n.des| truncatechars:200}}</p>
+                                </div>
+                            </div>
+
+                        {% empty %}
+                            <h3 class="tm-text-primary mb-3 tm-catalog-item-title">NO DATA FOUND</h3>
+                            
+                        {% endfor %}
+                    </div>
+
+                    <!-- Catalog Paging Buttons -->
+                    <div>
+                        <ul class="nav tm-paging-links">
+                        {% if blogsdata.has_previous %}
+                            <li class="nav-item "><a href="/" class="nav-link tm-paging-link">First</a></li>
+                            <li class="nav-item "><a href="?page={{blogsdata.previous_page_number}}" class="nav-link tm-paging-link">pre</a></li>
+                        {% endif %} 
+
+                        {% for n in totalfinalpage %}
+                            <li class="nav-item"><a href="?page={{n}}" class="nav-link tm-paging-link">{{n}}</a></li>
+                        {% endfor %}
+                        {% if blogsdata.has_next %}
+                            <li class="nav-item"><a href="?page={{blogsdata.next_page_number}}" class="nav-link tm-paging-link">Nex</a></li>
+                        {% endif %}
+                        </ul>
+                    </div>
+                </main> 
+
+                <!-- footer links -->
+                		<div class="container-fluid tm-content-container mx-auto pt-5">
+
+            <div class="row mt-5 pt-3">
+                <div class="col-xl-6 col-lg-12 mb-4">
+                    <div class="tm-bg-gray p-5 h-100">
+                        <h3 class="tm-text-primary mb-3"style="position: relative; top: 88px;">Some project and import links here.</h3>
+                        <p class="mb-5" style="position: relative; top: 92px;">Hope you like my blog webiste.
+                            work. Thank you.</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-4">
+                    <div class="p-5 tm-bg-gray">
+                        <h3 class="tm-text-primary mb-4">Quick Links</h3>
+                        <ul class="list-unstyled tm-footer-links">
+                            <li><a href="https://www.linkedin.com/in/aman-ramteke-a2a693209/">Linkedin</a></li>
+                            <li><a href="https://github.com/amanramteke70">Github</a></li>
+                            <li><a href="#">Website</a></li>
+                            <li><a href="#">Facebook</a></li>
+                        </ul>    
+                    </div>                        
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-4">
+                    <div class="p-5 tm-bg-gray h-100">
+                        <h3 class="tm-text-primary mb-4">Our Pages</h3>
+                        <ul class="list-unstyled tm-footer-links">
+
+                            <li><a href="/">Home</li>
+                            <li><a href="about.html/">About Us</a></li>
+                            <li><a href="contact.html/">Contact</a></li>
+                            <li><a href="admin/">admin</a></li>
+                        </ul>
+                    </div>                        
+                </div>
+            </div>
+
+			<!--footer-->
+            <footer class="row pt-5">
+                <div class="col-12">
+                    <p class="text-right">Copyright © 2021 Natural Habitat Adventures Privacy Policy | Terms of Service | About Us | Contact Us | Cookie Settings.
+                </div>
+            </footer>
+		</div>		 
+            </div> 
+        </div>
+
+    </div> 
+
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script>
+        function setVideoSize() {
+            const vidWidth = 1920;
+            const vidHeight = 1080;
+            let windowWidth = window.innerWidth;
+            let newVidWidth = windowWidth;
+            let newVidHeight = windowWidth * vidHeight / vidWidth;
+            let marginLeft = 0;
+            let marginTop = 0;
+
+            if (newVidHeight < 500) {
+                newVidHeight = 500;
+                newVidWidth = newVidHeight * vidWidth / vidHeight;
+            }
+
+            if(newVidWidth > windowWidth) {
+                marginLeft = -((newVidWidth - windowWidth) / 2);
+            }
+
+            if(newVidHeight > 720) {
+                marginTop = -((newVidHeight - $('#tm-video-container').height()) / 2);
+            }
+
+            const tmVideo = $('#tm-video');
+
+            tmVideo.css('width', newVidWidth);
+            tmVideo.css('height', newVidHeight);
+            tmVideo.css('margin-left', marginLeft);
+            tmVideo.css('margin-top', marginTop);
+        }
+
+        $(document).ready(function () {
+            /************** Video background *********/
+
+            setVideoSize();
+
+            // Set video background size based on window size
+            let timeout;
+            window.onresize = function () {
+                clearTimeout(timeout);
+                timeout = setTimeout(setVideoSize, 100);
+            };
+
+            // Play/Pause button for video background      
+            const btn = $("#tm-video-control-button");
+
+            btn.on("click", function (e) {
+                const video = document.getElementById("tm-video");
+                $(this).removeClass();
+
+                if (video.paused) {
+                    video.play();
+                    $(this).addClass("fas fa-pause");
+                } else {
+                    video.pause();
+                    $(this).addClass("fas fa-play");
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>

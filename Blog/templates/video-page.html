@@ -1,0 +1,86 @@
+{% include "base.html" %}
+					</div>
+				</div>
+			</div>
+
+		<!-- Page content -->
+		<div class="container-fluid">
+			<div class="mx-auto tm-content-container">
+				<main>
+					<div class="row mb-5 pb-4">
+						<div class="col-12">
+                            <img src="/media/{{newdetails.img}}" alt="Image" class="img-fluid tm-catalog-item-img" style = "osition: relative;
+    text-align: center;
+    padding-top: 75px;
+    padding-left: 419px;">    
+						</div>
+					</div>
+					<div class="">
+						<div class="col-xl-8 col-lg-7">
+							<!-- Video description -->
+							<div class="tm-video-description-box" style="position: relative;
+    left: 60px; bottom:27px;">
+								<h2 style= "margin-bottom: 1rem!important " class="mb-5 tm-video-title">{{newdetails.tittle}}</h2>
+								<p class="mb-4"> {{newdetails.des}}</p>
+							</div>							
+						</div>
+						
+					</div>
+			
+				</main>
+
+				<!--footer links -->
+                        <div class="row mt-5 pt-3">
+                <div class="col-xl-6 col-lg-12 mb-4">
+                    <div class="tm-bg-gray p-5 h-100">
+                        <h3 class="tm-text-primary mb-3"style="position: relative; top: 88px;">Some project and import links here.</h3>
+                        <p class="mb-5" style="position: relative; top: 92px;">Hope you like my blog webiste.
+                            work. Thank you.</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-4">
+                    <div class="p-5 tm-bg-gray">
+                        <h3 class="tm-text-primary mb-4">Quick Links</h3>
+                        <ul class="list-unstyled tm-footer-links">
+                            <li><a href="https://www.linkedin.com/in/aman-ramteke-a2a693209/">Linkedin</a></li>
+                            <li><a href="https://github.com/amanramteke70">Github</a></li>
+                            <li><a href="#">Website</a></li>
+                            <li><a href="#">Facebook</a></li>
+                        </ul>    
+                    </div>                        
+                </div>
+                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12 mb-4">
+                    <div class="p-5 tm-bg-gray h-100">
+                        <h3 class="tm-text-primary mb-4">Our Pages</h3>
+                        <ul class="list-unstyled tm-footer-links">
+
+                            <li><a href="/">Home</li>
+                            <li><a href="about.html/">About Us</a></li>
+                            <li><a href="contact.html/">Contact</a></li>
+                            <li><a href="admin/">admin</a></li>
+                        </ul>
+                    </div>                        
+                </div>
+            </div>	
+			</div> 
+		</div>
+	</div>
+
+	<script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+    	$(document).ready(function() {
+    		$('.tm-likes-box').click(function(e) {
+    			e.preventDefault();
+    			$(this).toggleClass('tm-liked');
+
+    			if($(this).hasClass('tm-liked')) {
+    				$('#tm-likes-count').html('486 likes');
+    			} else {
+    				$('#tm-likes-count').html('485 likes');
+    			}
+    		});
+    	});
+    </script>
+</body>
+</html>
